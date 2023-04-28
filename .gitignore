@@ -1,0 +1,65 @@
+# .gitignore
+
+# Secret keys and sensitive information
+/portfolio/settings.py
+
+# Media files
+/media/
+/static/media/
+
+# Static files
+/staticfiles/
+*.pyc
+
+# Virtual environment
+/venv/
+/env/
+.venv/
+
+# Log files and temporary files
+/log/
+/tmp/
+*.log
+
+# IDE-specific files
+*.pyc
+*.pyo
+*.pyc
+*.pyo
+*.egg-info/
+*.egg/
+*.pyc
+*.pyo
+*.sqlite3
+
+# Compiled files
+__pycache__/
+*.pyc
+*.pyo
+
+# Miscellaneous
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.pyc
+*.pyo
+*.py~
+*.log
+*.tmp
+*.pid
+*.bak
+*.sw*
+*.db
+*.db.sqlite3
+*.cache
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.pyc
+*.pyo
+*.csv
+*.bak
+*.tmp
+*.sql
