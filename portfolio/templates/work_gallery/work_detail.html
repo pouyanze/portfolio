@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container py-5">
+    <h1 class="mb-4">{{ work.title }}</h1>
+    <div class="row">
+      <div class="col-md-8">
+        <img src="{{ work.image.url }}" alt="{{ work.title }}" class="img-fluid">
+      </div>
+      <div class="col-md-4">
+        <p class="lead">{{ work.description }}</p>
+        <ul class="list-unstyled">
+          <li><strong>Date created:</strong> {{ work.date_created|date:'M d, Y' }}</li>
+          <li><strong>Skills:</strong> {{ work.skills }}</li>
+          <li><strong>Tools:</strong> {{ work.tools }}</li>
+        </ul>
+        <a href="{% url 'edit_work' pk=work.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'delete_work' pk=work.pk %}" class="btn btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    {% if user.is_authenticated and user.is_staff %}
+      <a href="{% url 'create_work' %}" class="btn btn-primary">Add New Work Experience</a>
+    {% endif %}
+  </div>
+{% endblock %}
