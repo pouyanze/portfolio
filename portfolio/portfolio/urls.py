@@ -16,8 +16,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from accounts.views import CustomLoginView, CustomLogoutView
+from django.contrib.auth.views import LogoutView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-]
+    path('work_gallery/', include('work_gallery.urls')),
+    path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', CustomLogoutView.as_view(), name='logout'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
