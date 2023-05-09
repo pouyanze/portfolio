@@ -8,12 +8,7 @@
 
   <div>
     {% if user.is_authenticated and user.is_staff %}
-      <a href="{% url 'create_work' %}" class="btn btn-primary">Add New Work Experience</a>
-    {% endif %}
-  </div>
-  <div>
-    {% if user.is_authenticated %}
-      {{ user.is_staff }}
+      <a href="{% url 'create_work' %}" class="btn btn-light">Add New Work Experience</a>
     {% endif %}
   </div>
 
