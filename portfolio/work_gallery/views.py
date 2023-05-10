@@ -1,7 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Work
 from .forms import WorkForm
-from django.contrib.auth.decorators import user_passes_test
+from django.views.generic.edit import UpdateView
+from django.views.generic import DeleteView
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.utils.decorators import method_decorator
 
 
 # list all work experiences
@@ -34,3 +38,18 @@ def create_work(request):
         'form': form
     }
     return render(request, 'work_gallery/create_work.html', context)
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test(lambda u: u.is_staff), name='dispatch')
+class EditWork(UpdateView):
+    model = Work
+    form_class = WorkForm
+    template_name = 'work_gallery/edit_work.html'
+    success_url = reverse_lazy('work_index')
+
+@method_decorator(login_required, name='dispatch')
+@method_decorator(user_passes_test(lambda u: u.is_staff), name='dispatch')
+class DeleteWork(DeleteView):
+    model = Work
+    success_url = reverse_lazy('work_index')
+    template_name = 'delete_work.html'

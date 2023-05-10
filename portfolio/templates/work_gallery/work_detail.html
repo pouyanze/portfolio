@@ -12,17 +12,18 @@
       <div class="col-md-4">
         <p class="lead">{{ work.description }}</p>
         <ul class="list-unstyled">
-          <li><strong>Date created:</strong> {{ work.date_created|date:'M d, Y' }}</li>
-          <li><strong>Skills:</strong> {{ work.skills }}</li>
-          <li><strong>Tools:</strong> {{ work.tools }}</li>
+          <li>Date created: {{ work.date|date:'M d, Y' }}</li>
         </ul>
-        <a href="{% url 'edit_work' pk=work.pk %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'delete_work' pk=work.pk %}" class="btn btn-danger">Delete</a>
+        {% if user.is_authenticated and user.is_staff %}
+          <a href="{% url 'edit_work' pk=work.pk %}" class="btn btn-primary">Edit</a>
+          <a href="#deleteWorkModal" data-bs-target="#deleteWorkModal" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
+          {% include 'work_gallery/delete_work.html' %}
+        {% endif %}
       </div>
     </div>
   </div>
 
-  <div>
+  <div class="pb-5 px-3">
     {% if user.is_authenticated and user.is_staff %}
       <a href="{% url 'create_work' %}" class="btn btn-primary">Add New Work Experience</a>
     {% endif %}
