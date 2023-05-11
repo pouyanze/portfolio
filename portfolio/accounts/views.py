@@ -16,3 +16,11 @@ class CustomLogoutView(LogoutView):
         response = super().dispatch(request, *args, **kwargs)
         messages.success(request, "You have been successfully logged out.")
         return redirect(self.next_page)
+    
+from django.views.generic import CreateView
+from .forms import SignUpForm
+
+class SignUpView(CreateView):
+    form_class = SignUpForm
+    template_name = 'accounts/signup.html'
+    success_url = reverse_lazy('login')
