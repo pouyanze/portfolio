@@ -15,8 +15,8 @@
           <li>Date created: {{ work.date|date:'M d, Y' }}</li>
         </ul>
         {% if user.is_authenticated and user.is_staff %}
-          <a href="{% url 'edit_work' pk=work.pk %}" class="btn btn-primary">Edit</a>
-          <a href="#deleteWorkModal" data-bs-target="#deleteWorkModal" class="btn btn-danger" data-bs-toggle="modal">Delete</a>
+          <a href="{% url 'edit_work' pk=work.pk %}" class="btn btn-outline-light">Edit</a>
+          <a href="#deleteWorkModal" data-bs-target="#deleteWorkModal" class="btn btn-outline-light" data-bs-toggle="modal">Delete</a>
           {% include 'work_gallery/delete_work.html' %}
         {% endif %}
       </div>
@@ -25,7 +25,7 @@
 
   <div class="pb-5 px-3">
     {% if user.is_authenticated and user.is_staff %}
-      <a href="{% url 'create_work' %}" class="btn btn-primary">Add New Work Experience</a>
+      <a href="{% url 'create_work' %}" class="btn btn-outline-light">Add New Work Experience</a>
     {% endif %}
   </div>
 {% endblock %}
