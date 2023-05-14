@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>{{ post.title }}</h2>
+        <p>By {{ post.author }} {% if post.created_date%} on {{ post.created_date }} {% endif %} </p>
+        {% if post.image %}
+          <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+        {% endif %}
+        <p>{{ post.body }}</p>
+      </div>
+    </div>
+   {% if user.is_authenticated and user.is_staff %}
+          <a href="{% url 'edit_post' post.pk %}" class="btn btn-outline-light">Edit</a>
+          <a href="#deletePostModal" data-bs-target="#deletePostModal" class="btn btn-outline-light" data-bs-toggle="modal">Delete</a>
+          {% include 'blog/delete_post.html' %}
+    {% endif %}
+  </div>
+{% endblock %}
