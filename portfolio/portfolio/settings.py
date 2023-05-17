@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'work_gallery',
     'accounts',
     'blog',
+    'contact'
 ]
 
 MIDDLEWARE = [
