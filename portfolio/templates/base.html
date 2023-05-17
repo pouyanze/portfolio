@@ -12,6 +12,9 @@
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
   <script type="text/javascript" src="{% static 'js/script.js' %}"></script>  
+  {% block css %}
+  <!-- Additional CSS -->
+  {% endblock %}
 </head>
 <body class="bg-dark text-white">
 
