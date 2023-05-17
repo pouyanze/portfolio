@@ -36,9 +36,9 @@ def create_post(request):
             return redirect('blog_index')
     else:
         form = BlogForm()
-    context = {
+        context = {
         'form': form
-    }
+        }
     return render(request, 'blog/create_post.html', context)
 
 @method_decorator(login_required, name='dispatch')
