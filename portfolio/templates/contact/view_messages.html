@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Admin Message List
+{% endblock %}
+
+{% block content %}
+    <h2>Admin Message List</h2>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>
+                    <strong>Name:</strong> {{ message.name }}<br>
+                    <strong>Email:</strong> {{ message.email }}<br>
+                    <strong>Message:</strong> {{ message.message }}<br>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ message.pk }}">Delete</button>
+                </li>
+
+                <!-- Delete Modal -->
+                <div class="modal" id="deleteModal{{ message.pk }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{ message.pk }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteModalLabel{{ message.pk }}">Delete Message</h5>
+                                <button type="button" class="btn-close border" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-light p-3">Are you sure you want to delete this message?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancel</button>
+                                <form method="POST" action="{% url 'message_delete' message.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn-outline-light">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No messages found.</p>
+    {% endif %}
+{% endblock %}
