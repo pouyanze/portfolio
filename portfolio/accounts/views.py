@@ -13,8 +13,8 @@ class CustomLogoutView(LogoutView):
     next_page = '/'
     
     def dispatch(self, request, *args, **kwargs):
-        response = super().dispatch(request, *args, **kwargs)
-        messages.success(request, "You have been successfully logged out.")
+        super().dispatch(request, *args, **kwargs)
+        messages.success(request, "You have been successfully logged out.", extra_tags='success-logout')
         return redirect(self.next_page)
     
 from django.views.generic import CreateView
