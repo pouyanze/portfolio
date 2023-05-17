@@ -4,6 +4,11 @@
   Work gallery
 {% endblock %}
 
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/work_index.css' %}">
+{% endblock %}
+
 {% block content %}
 
   <div>
@@ -17,7 +22,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for work in works %}
         <div class="col">
-          <div class="card shadow-sm h-100">
+          <div class="card shadow-sm bg-secondary">
             <a href="{% url 'work_detail' pk=work.pk %}">
               <img src="{{ work.image.url }}" alt="{{ work.title }}" class="card-img-top">
             </a>
