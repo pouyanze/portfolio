@@ -55,3 +55,29 @@ class DeletePost(DeleteView):
     model = Post
     success_url = reverse_lazy('blog_index')
     template_name = 'delete_post.html'
+
+#  add a post to favorites or remove it from favorites
+@login_required
+def favorite_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.user in post.favorites.all():
+        post.favorites.remove(request.user)
+    else:
+        post.favorites.add(request.user)
+    return redirect('blog_index')
+
+# show all favorite posts
+@login_required
+def favorite_posts(request):
+    favorite_posts = request.user.favorite_posts.all()
+    context = {
+        'favorite_posts': favorite_posts
+    }
+    return render(request, 'blog/favorite_posts.html', context)
+
+# remove a favorited post from favorites page
+@login_required
+def remove_favorite(request, pk):
+    post = Post.objects.get(pk=pk)
+    request.user.favorite_posts.remove(post)
+    return redirect('favorite_posts')

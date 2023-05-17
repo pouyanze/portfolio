@@ -12,6 +12,8 @@ class Post(models.Model):
     image = models.ImageField(upload_to='posts', blank=True, null=True)
     created_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+    favorites = models.ManyToManyField(User, related_name='favorite_posts', blank=True)
+
 
     def __str__(self):
         return str(self.title)

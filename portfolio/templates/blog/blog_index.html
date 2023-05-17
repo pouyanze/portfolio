@@ -1,37 +1,47 @@
 {% extends 'base.html' %}
 {% block title %}
-  Blog
+Blog
 {% endblock %}
 
 {% load static %}
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/blog_index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/blog_index.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="py-5 px-3">
-    {% if user.is_authenticated and user.is_staff %}
-      <a href="{% url 'create_post' %}" class="btn btn-outline-light">Add New Post to Blog</a>
-    {% endif %}
-  </div>
-  <div class="row justify-content-center">
-    {% for post in posts %}
-      <div class="card mb-3 col-md-3 mb-3 mx-3 bg-secondary">
-        {% if post.image %}
-          <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
-        {% endif %}
-        <div class="card-body">
-          <h2 class="card-title">{{ post.title }}</h2>
-          <p class="card-text">{{ post.body|truncatewords:50 }}</p>
-          <a href="{% url 'post_detail' post.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
-        </div>
-        <div class="card-footer text-muted">
-          Posted on {{ post.created_date|date:"F j, Y" }} by {{ post.author }}
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-  {% if not posts %}
-    <p>There are no posts to show.</p>
+<div class="py-5 px-3">
+  {% if user.is_authenticated and user.is_staff %}
+  <a href="{% url 'create_post' %}" class="btn btn-outline-light">Add New Post to Blog</a>
   {% endif %}
+</div>
+<div class="row justify-content-center">
+  {% for post in posts %}
+  <div class="card mb-3 col-md-3 mb-3 mx-3 bg-secondary">
+    {% if post.image %}
+    <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
+    {% endif %}
+    <div class="card-body">
+      <h2 class="card-title">{{ post.title }}</h2>
+      <p class="card-text">{{ post.body|truncatewords:50 }}</p>
+      <a href="{% url 'post_detail' post.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
+    </div>
+    <div class="card-footer text-muted">
+      Posted on {{ post.created_on|date:"F j, Y" }} by {{ post.author }}
+      {% if user.is_authenticated %}
+      <form method="POST" action="{% url 'favorite_post' post.pk %}">
+        {% csrf_token %}
+        {% if user in post.favorites.all %}
+        <button type="submit" class="btn btn-sm btn-outline-danger my-2">Remove Favorite</button>
+        {% else %}
+        <button type="submit" class="btn btn-sm btn-outline-primary my-2">Add to Favorites</button>
+        {% endif %}
+      </form>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% if not posts %}
+<p>There are no posts to show.</p>
+{% endif %}
 {% endblock %}
