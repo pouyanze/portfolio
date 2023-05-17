@@ -37,8 +37,13 @@
           <a class="nav-link" href="{% url 'blog_index' %}">Blog</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
         </li>
+        {% if user.is_authenticated and user.is_staff %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'view_messages' %}">View Messages</a>
+          </li>
+        {% endif %}
       </ul>
       <ul class="navbar-nav">
         {% if not user.is_authenticated and not user.is_staff %}
@@ -63,9 +68,11 @@
 
   {% if messages %}
     {% for message in messages %}
-        <div class="logout-message {{ message.tags }}">
-            {{ message }}
-        </div>
+      {% if 'success-logout' in message.tags %}
+          <div class="logout-message {{ message.tags }}">
+              {{ message }}
+          </div>
+      {% endif %}
     {% endfor %}
   {% endif %}
   
