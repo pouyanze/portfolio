@@ -27,3 +27,9 @@
     background-image: none;
     border-color: #f8f9fa;
 }
+
+a {
+    color: rgb(142, 142, 142);
+    font-weight: bolder;
+    border-radius: 10px;
+}
