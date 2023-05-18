@@ -1,51 +1,57 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Home
+Home
 {% endblock %}
 
 {% load static %}
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 {% endblock %}
 
 {% block content %}
-  <div class="container">
-    <h1 class="text-center">Welcome to My Portfolio</h1>
-    <hr>
-
-    <!-- Work Experiences section -->
-    <section class="py-5" id="work_index">
-      <div class="container">
-        <h2 class="text-center text-dark shadow-lg p-3 mb-5 bg-body rounded">Work Experiences</h2>
-        <ul class="list-group">
-          {% for work_experience in work_experiences %}
-          <li class="list-group-item mb-2">
-            <h4>{{ work_experience.title }}</h4>
-            <p>{{ work_experience.description }}</p>
-          </li>
-          {% endfor %}
-        </ul>
-        <div class="text-center my-3">
-          <a href="{% url 'work_index' %}" class="btn btn-dark border border-white">Show More</a>
-        </div>
+<div class="container">
+  
+   <!-- Posts section -->
+   <section class="py-5" id="blog_index">
+    <h2 class="text-center text-dark">
+      <span class="d-inline-block custom-bg-color-light p-3">Blog Posts</span>
+    </h2>
+    <div class="container">
+      <ul class="list-group">
+        {% for post in posts %}
+          <a href="{% url 'post_detail' post.pk %}">
+            <li class="list-group-item mb-2 custom-bg-color-dark">{{ post.title }} <hr><p>by {{ post.author }}</p></li>
+          </a>
+        {% endfor %}
+      </ul>
+      <div class="text-center my-3">
+        <a href="{% url 'blog_index' %}" class="btn btn-dark border border-white p-2">Show More</a>
       </div>
-    </section>
-    <hr>
+    </div>
+  </section>
 
-    <!-- Posts section -->
-    <section class="py-5" id="blog_index">
-      <div class="container">
-        <h2 class="text-center text-dark shadow-lg p-3 mb-5 bg-body rounded">Blog Posts</h2>
-        <ul class="list-group">
-          {% for post in posts %}
-            <li class="list-group-item text-dark mb-2">{{ post.title }} by {{ post.author }}</li>
-          {% endfor %}
-        </ul>
-        <div class="text-center my-3">
-          <a href="{% url 'blog_index' %}" class="btn btn-dark border border-white">Show More</a>
-        </div>
+  <!-- Work Experiences section -->
+
+  <section class="py-5 mt-5 mb-5" id="work_index">
+    <h2 class="text-center text-dark">
+      <span class="d-inline-block custom-bg-color-light p-3">Work Experiences</span>
+    </h2>
+    <div class="container">
+      <ul class="list-group">
+        {% for work_experience in work_experiences %}
+          <a href="{% url 'work_detail' work_experience.pk %}">
+            <li class="list-group-item mb-2 custom-bg-color-dark">
+              <h4>{{ work_experience.title }}</h4>
+              <p>{{ work_experience.description }}</p>
+            </li>
+          </a>
+        {% endfor %}
+      </ul>
+      <div class="text-center my-3">
+        <a href="{% url 'work_index' %}" class="btn btn-dark border border-white p-2">Show More</a>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+</div>
 {% endblock %}
