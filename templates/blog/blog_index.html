@@ -19,7 +19,7 @@ Blog
   <h1 class="mb-4">My Blog</h1>
   <div class="row justify-content-center">
     {% for post in posts %}
-    <div class="card mb-3 col-md-3 mb-3 mx-3 bg-secondary">
+    <div class="card mb-3 col-md-4 mx-3 bg-secondary pt-3">
       {% if post.image %}
       <img class="card-img-top" src="{{ post.image.url }}" alt="{{ post.title }}">
       {% endif %}
@@ -34,9 +34,9 @@ Blog
         <form method="POST" action="{% url 'favorite_post' post.pk %}">
           {% csrf_token %}
           {% if user in post.favorites.all %}
-          <button type="submit" class="btn btn-sm btn-outline-danger my-2">Remove Favorite</button>
+          <button type="submit" class="btn btn-sm btn-outline-dark my-2">Remove Favorite</button>
           {% else %}
-          <button type="submit" class="btn btn-sm btn-outline-primary my-2">Add to Favorites</button>
+          <button type="submit" class="btn btn-sm btn-dark my-2">Add to Favorites</button>
           {% endif %}
         </form>
         {% endif %}
