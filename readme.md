@@ -16,33 +16,40 @@ The Portfolio project is a template designed to help individuals create their ow
 ## Installation and Usage
 
 To use the Portfolio template, follow these steps:
-
-1. **Install Pipenv:** If you don't have Pipenv installed, you can install it using pip:
+1. **Clone the Repository:** Clone the project repository to your local machine:
+   ```
+   git clone https://github.com/pouyanze/portfolio.git
+   ```
+2. **Install Pipenv:** If you don't have Pipenv installed, you can install it using pip:
    ```
    pip install pipenv
    ```
 
-2. **Install Dependencies:** Install the project dependencies specified in the `Pipfile`:
+3. **Activate the Virtual Environment:** Activate the virtual environment created by Pipenv:
+   ```
+   pipenv shell
+   ```
+4. **Install Dependencies:** Install the project dependencies specified in the `Pipfile`:
    ```
    pipenv install
    ```
 
-3. **Apply Database Migrations:** Apply the database migrations to set up the database:
+5. **Apply Database Migrations:** Apply the database migrations to set up the database:
    ```
    python manage.py migrate
    ```
 
-4. **Create Superuser Account:** Create a superuser account to access the admin interface:
+6. **Create Superuser Account:** Create a superuser account to access the admin interface:
    ```
    python manage.py createsuperuser
    ```
 
-5. **Start the Development Server:** Launch the development server:
+7. **Start the Development Server:** Launch the development server:
    ```
    python manage.py runserver
    ```
 
-6. **Access the Application:** Open your web browser and visit [http://localhost:8000](http://localhost:8000) to access the application.
+8. **Access the Application:** Open your web browser and visit [http://localhost:8000](http://localhost:8000) to access the application.
 
 Feel free to adapt and modify the template to suit your unique requirements and design preferences. Experiment with different styles, layouts, and content to make your portfolio stand out.
 
