@@ -20,6 +20,10 @@ To use the Portfolio template, follow these steps:
    ```
    git clone https://github.com/pouyanze/portfolio.git
    ```
+   and then go to its directory:
+   ```
+   cd portfolio
+   ```
 2. **Install Pipenv:** If you don't have Pipenv installed, you can install it using pip:
    ```
    pip install pipenv
