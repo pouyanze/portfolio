@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.views.generic import CreateView
+from .forms import SignUpForm
 
 class CustomLoginView(LoginView):
     template_name = 'login.html'
@@ -17,8 +19,6 @@ class CustomLogoutView(LogoutView):
         messages.success(request, "You have been successfully logged out.", extra_tags='success-logout')
         return redirect(self.next_page)
     
-from django.views.generic import CreateView
-from .forms import SignUpForm
 
 class SignUpView(CreateView):
     form_class = SignUpForm
