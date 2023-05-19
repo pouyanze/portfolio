@@ -22,7 +22,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
       {% for work in works %}
         <div class="col">
-          <div class="card shadow-sm bg-secondary">
+          <div class="card shadow-sm bg-secondary pt-3">
             <a href="{% url 'work_detail' pk=work.pk %}">
               <img src="{{ work.image.url }}" alt="{{ work.title }}" class="card-img-top">
             </a>
@@ -33,6 +33,7 @@
                 <small class="text-muted">{{ work.date_created|date:'M d, Y' }}</small>
               </div>
             </div>
+            <a href="{% url 'work_detail' pk=work.pk %}" class="btn btn-outline-dark">Read More &rarr;</a>
           </div>
         </div>
       {% empty %}
