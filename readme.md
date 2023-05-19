@@ -57,6 +57,10 @@ To use the Portfolio template, follow these steps:
 
 Feel free to adapt and modify the template to suit your unique requirements and design preferences. Experiment with different styles, layouts, and content to make your portfolio stand out.
 
+9. **Use blog posts API** at this address:
+```
+http://localhost:8000/api/posts
+```
 ## Contributing
 
 Contributions to the Portfolio project are welcome! If you have any suggestions, bug reports, or feature requests, please open an issue on the project's GitHub repository. 
