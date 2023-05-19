@@ -81,3 +81,11 @@ def remove_favorite(request, pk):
     post = Post.objects.get(pk=pk)
     request.user.favorite_posts.remove(post)
     return redirect('favorite_posts')
+
+# creating api with rest_framework
+from rest_framework import viewsets
+from .serializers import PostSerializer
+
+class PostViewSet(viewsets.ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
